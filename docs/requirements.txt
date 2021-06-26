@@ -1,0 +1,4 @@
+numpy
+psychopy
+pydata-sphinx-theme
+sphinx-autodoc-typehints
