@@ -51,6 +51,9 @@ setup(
             "isort",
             "flake8",
             "mypy",
+            "pydata-sphinx-theme",
+            "sphinx",
+            "sphinx-autodoc-typehints",
         ]
     },
     python_requires=">=3.8",

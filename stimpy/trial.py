@@ -1,11 +1,6 @@
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
 from psychopy import core, event, visual
 
-if TYPE_CHECKING:
-    from .stim import StimulusData
+from .stim import StimulusData
 
 
 class Drawable:
@@ -45,7 +40,7 @@ class Trial:
     :param stimuli: Visual stimuli.
     :param win: Psychopy window.
     :param dur: Duration of the trial. Inferred from ``stimuli_properties``
-    if not provided.
+        if not provided.
     """
 
     def __init__(self, stimuli, win: visual.Window, dur: float = None):

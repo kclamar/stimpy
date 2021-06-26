@@ -1,9 +1,8 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, List, Type
+from typing import List, Type
 
-if TYPE_CHECKING:
-    from psychopy import visual
+from psychopy import visual
 
 
 class StimulusData:

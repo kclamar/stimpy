@@ -23,7 +23,7 @@ class Circulating(PosFunc):
     :param size: Diameter(s) of the circulation trajectory.
     :param period: Circulation period.
     :param init_angle: Initial angle in degrees. 0° is rightward to the center.
-    Increases in counterclockwise direction.
+        Increases in counterclockwise direction.
     :param clockwise: Whether to circulate in clockwise direction.
     """
 
