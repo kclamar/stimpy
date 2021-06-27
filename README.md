@@ -1,4 +1,4 @@
-[![PyPI version](https://badge.fury.io/py/stimpy.svg)](https://badge.fury.io/py/stimpy)
+[![PyPI version](https://badge.fury.io/py/stimpy.svg)](https://pypi.python.org/pypi/stimpy)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/stimpy.svg)](https://pypi.python.org/pypi/stimpy)
 [![Documentation Status](https://readthedocs.org/projects/stimpy/badge/?version=latest)](https://stimpy.readthedocs.io/en/latest/?badge=latest)
 # StimPy

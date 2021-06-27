@@ -10,6 +10,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+import importlib.metadata
 import os
 import sys
 from typing import List
@@ -18,15 +19,6 @@ project_path = os.path.abspath("../../stimpy")
 
 sys.path.insert(0, project_path)
 
-
-def get_version(path):
-    with open(os.path.join(path, "__init__.py"), "r") as fp:
-        for line in fp.readlines():
-            if line.startswith("__version__"):
-                return eval(line.split("=")[-1])
-    raise RuntimeError("Unable to find version string.")
-
-
 # -- Project information -----------------------------------------------------
 
 project = "stimpy"
@@ -34,7 +26,7 @@ copyright = "2021, Ka Chung Lam"
 author = "Ka Chung Lam"
 
 # The full version, including alpha/beta/rc tags
-release = get_version(project_path)
+release = importlib.metadata.version(project)
 
 
 # -- General configuration ---------------------------------------------------
