@@ -41,6 +41,8 @@ extensions = [
     "sphinx_panels",
 ]
 
+panels_add_bootstrap_css = False
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
