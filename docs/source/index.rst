@@ -11,7 +11,7 @@ StimPy documentation
    :hidden:
 
    User Guide <user_guide/index>
-   API refernce <modules>
+   API reference <modules>
 
 
 .. panels::
