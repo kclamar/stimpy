@@ -15,8 +15,6 @@ class Window(visual.Window):
         monitor: Union[str, Monitor] = None,
         distance: float = None,
         width: float = None,
-        units="deg",
-        color=(-1, -1, -1),
         fullscr=True,
         size: Tuple[int, int] = None,
         **kwargs,
@@ -27,8 +25,6 @@ class Window(visual.Window):
         automatically from disk if the monitor name is already defined.
         :param distance: Monitor distance.
         :param width: Monitor width.
-        :param units: Defines the default units of stimuli drawn in the window.
-        :param color: Color of background as [r, g, b] list or single value.
         Each gun can take values between -1.0 and 1.0.
         :param fullscr: Create a window in ‘full-screen’ mode. Better timing
         can be achieved in full-screen mode.
@@ -67,9 +63,7 @@ class Window(visual.Window):
 
         super().__init__(
             size=size,
-            color=color,
             fullscr=fullscr,
             monitor=monitor,
-            units=units,
             **kwargs,
         )

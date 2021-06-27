@@ -38,22 +38,24 @@ class Drawable:
 class Trial:
     """Trial for showing visual stimuli.
 
-    :param stimuli: Visual stimuli.
+    :param scene: Scene.
     :param win: Psychopy window.
     :param dur: Duration of the trial. Inferred from ``stimuli_properties``
         if not provided.
     """
 
-    def __init__(self, stimuli, win: visual.Window, dur: float = None):
+    def __init__(self, scene, win: visual.Window, dur: float = None):
         self.__win = win
-        self.__drawables = [Drawable(win, *args) for args in stimuli]
+        self.__win.setColor(scene.color)
+        self.__win.setUnits(scene.units)
+        self.__drawables = [Drawable(win, *args) for args in scene]
         self.__dur: float = (
             max(map(lambda x: x.end, self.__drawables)) if dur is None else dur
         )
         self.__timer = core.Clock()
 
-    def run(self) -> None:
-        """Run trial."""
+    def start(self) -> None:
+        """Start trial."""
         self.__timer.reset()
 
         while (t := self.__timer.getTime()) < self.__dur:

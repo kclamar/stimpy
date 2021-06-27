@@ -65,3 +65,25 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "psychopy": ("https://www.psychopy.org/", None),
 }
+
+html_context = {
+    "github_url": "https://github.com",
+    "github_user": "kclamar",
+    "github_repo": "stimpy",
+    "github_version": "master",
+    "doc_path": "docs/source",
+}
+
+html_theme_options = {
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/kclamar/stimpy",
+            "icon": "fab fa-github-square",
+        },
+    ],
+    "external_links": [
+        {"name": "PsychoPy", "url": "https://www.psychopy.org/"},
+    ],
+    "use_edit_page_button": True,
+}

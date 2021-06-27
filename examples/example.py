@@ -1,9 +1,7 @@
-from stimpy import Animate, Stimuli, Trial, Window, animate, visual
+from stimpy import Animate, Scene, Trial, Window, animate, visual
 
 color = (1, 1, 1)
 dur = 2.0
-
-win = Window(distance=7, width=26, units="deg")
 
 sweep = Animate([(-90, 0), (90, 0), (0, 0)], [dur / 2, dur / 2, 0])
 sweeping = visual.Circle(
@@ -56,14 +54,15 @@ grating = visual.GratingStim(
     size=(180, 90), sf=0.1, phase=Animate([0, 1], [1, 0])
 )
 
-stimuli = Stimuli()
-stimuli.append(sweeping, 0, dur)
-stimuli.append(circulating, 2, dur)
-stimuli.append(spiraling, 4, dur)
-stimuli.append(looming, 6, dur)
-stimuli.append(flashing, 8, dur)
-stimuli.append(dimming, 10, dur)
-stimuli.append(grating, 12, dur)
+scene = Scene(color=(-1, -1, -1), units="deg")
+scene.add(sweeping, begin=0, dur=dur)
+scene.add(circulating, begin=2, dur=dur)
+scene.add(spiraling, begin=4, dur=dur)
+scene.add(looming, begin=6, dur=dur)
+scene.add(flashing, begin=8, dur=dur)
+scene.add(dimming, begin=10, dur=dur)
+scene.add(grating, begin=12, dur=dur)
 
-trial = Trial(stimuli, win=win)
-trial.run()
+win = Window(distance=7, width=26)
+trial = Trial(scene, win=win)
+trial.start()
