@@ -24,7 +24,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="stimpy",
-    version=get_version("stimpy/__init__.py"),
+    version=get_version("pyproject.toml"),
     packages=find_packages(),
     url="https://github.com/kclamar/stimpy",
     author="Ka Chung Lam",

@@ -4,4 +4,4 @@ from .stim import Stimuli
 from .trial import Trial
 from .window import Window
 
-__version__ = "0.0.1"
+__version__ = "0.0.2"

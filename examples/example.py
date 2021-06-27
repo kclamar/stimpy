@@ -3,14 +3,7 @@ from stimpy import Animate, Stimuli, Trial, Window, animate, visual
 color = (1, 1, 1)
 dur = 2.0
 
-win = Window(
-    monitor="testMonitor",
-    distance=10,
-    width=35,
-    units="deg",
-    color=(-1, -1, -1),
-    fullscr=True,
-)
+win = Window(distance=7, width=26, units="deg")
 
 sweep = Animate([(-90, 0), (90, 0), (0, 0)], [dur / 2, dur / 2, 0])
 sweeping = visual.Circle(

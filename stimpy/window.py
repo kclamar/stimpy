@@ -1,14 +1,18 @@
-from typing import Tuple
+import logging
+from typing import Tuple, Union
 
 from psychopy import visual
 from psychopy.monitors import Monitor
+
+logger = logging.getLogger("stimpy")
+logger.setLevel(logging.WARNING)
 
 
 class Window(visual.Window):
     def __init__(
         self,
         *,
-        monitor: str,
+        monitor: Union[str, Monitor] = None,
         distance: float = None,
         width: float = None,
         units="deg",
@@ -31,6 +35,14 @@ class Window(visual.Window):
         :param size: Size of the window in pixels [x, y].
         :param kwargs: Keyword parameters for :class:`visual.Window`.
         """
+        if monitor is None:
+            monitor = "__blank__"
+        if not isinstance(monitor, Monitor):
+            monitor = Monitor(monitor)
+
+        monitor.setDistance(distance)
+        monitor.setWidth(width)
+
         if size is None:
             try:
                 import ctypes
@@ -39,9 +51,19 @@ class Window(visual.Window):
                 user32.SetProcessDPIAware()
                 size = (user32.GetSystemMetrics(0), user32.GetSystemMetrics(1))
             except AttributeError:
-                pass
-
-        monitor = Monitor(name=monitor, distance=distance, width=width)
+                size = monitor.getSizePix()
+                if size is not None:
+                    logger.warning(
+                        "Monitor resolution cannot be found "
+                        f"and is set to {size[0]}x{size[1]}. Set the "
+                        "resolution manually with the 'size' argument."
+                    )
+                else:
+                    logger.error(
+                        "Monitor resolution cannot be found. Set the "
+                        "resolution manually with the 'size' argument."
+                    )
+        monitor.setSizePix(size)
 
         super().__init__(
             size=size,

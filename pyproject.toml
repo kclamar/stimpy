@@ -19,7 +19,7 @@ exclude = '''
 
 [tool.poetry]
 name = "stimpy"
-version = "0.0.1"
+version = "0.1.0"
 description = "A PsychoPy wrapper to create moving visual stimuli without loops."
 authors = ["Ka Chung Lam <kclamar@connect.ust.hk>"]
 license = "MIT"

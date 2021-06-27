@@ -14,7 +14,17 @@ import os
 import sys
 from typing import List
 
-sys.path.insert(0, os.path.abspath("../../stimpy"))
+project_path = os.path.abspath("../../stimpy")
+
+sys.path.insert(0, project_path)
+
+
+def get_version(path):
+    with open(os.path.join(path, "__init__.py"), "r") as fp:
+        for line in fp.readlines():
+            if line.startswith("__version__"):
+                return eval(line.split("=")[-1])
+    raise RuntimeError("Unable to find version string.")
 
 
 # -- Project information -----------------------------------------------------
@@ -24,7 +34,7 @@ copyright = "2021, Ka Chung Lam"
 author = "Ka Chung Lam"
 
 # The full version, including alpha/beta/rc tags
-release = "0.0.1"
+release = get_version(project_path)
 
 
 # -- General configuration ---------------------------------------------------
@@ -63,5 +73,3 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "psychopy": ("https://www.psychopy.org/", None),
 }
-
-# autodoc_mock_imports = ['psychopy']
