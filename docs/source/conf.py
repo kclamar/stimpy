@@ -38,7 +38,10 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
     "sphinx_autodoc_typehints",
+    "sphinx_panels",
 ]
+
+panels_add_bootstrap_css = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -61,7 +64,33 @@ html_theme = "pydata_sphinx_theme"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 
+html_css_files = [
+    "css/custom.css",
+]
+
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "psychopy": ("https://www.psychopy.org/", None),
+}
+
+html_context = {
+    "github_url": "https://github.com",
+    "github_user": "kclamar",
+    "github_repo": "stimpy",
+    "github_version": "master",
+    "doc_path": "docs/source",
+}
+
+html_theme_options = {
+    "icon_links": [
+        {
+            "name": "GitHub",
+            "url": "https://github.com/kclamar/stimpy",
+            "icon": "fab fa-github-square",
+        },
+    ],
+    "external_links": [
+        {"name": "PsychoPy", "url": "https://www.psychopy.org/"},
+    ],
+    "use_edit_page_button": True,
 }

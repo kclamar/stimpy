@@ -2,7 +2,7 @@ import importlib.metadata
 
 from . import visual
 from .animate import Animate
-from .stim import Stimuli
+from .scene import Scene
 from .trial import Trial
 from .window import Window
 

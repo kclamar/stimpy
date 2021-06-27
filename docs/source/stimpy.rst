@@ -12,6 +12,14 @@ Subpackages
 Submodules
 ----------
 
+stimpy.scene module
+-------------------
+
+.. automodule:: stimpy.scene
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 stimpy.stim module
 ------------------
 
