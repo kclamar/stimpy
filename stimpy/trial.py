@@ -1,3 +1,4 @@
+import numpy as np
 from psychopy import core, event, visual
 
 from .stim import StimulusData
@@ -63,3 +64,21 @@ class Trial:
 
             if "escape" in event.getKeys():
                 core.quit()
+
+    def save_movie(self, file_name: str, fps=60) -> None:
+        """Save trial as movie.
+
+        :param file_name: File name for the movie to be saved.
+        :param fps: Frames per second.
+        """
+        ts = np.arange(0, self.__dur, 1 / fps)
+
+        for t in ts:
+            self.__win.clearBuffer()
+
+            for drawable in self.__drawables:
+                drawable.draw(t)
+
+            self.__win.getMovieFrame(buffer="back")
+
+        self.__win.saveMovieFrames(fileName=file_name, fps=fps)
