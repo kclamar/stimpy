@@ -3,3 +3,4 @@ psychopy
 pydata-sphinx-theme
 sphinx-autodoc-typehints
 sphinx-panels
+stimpy
