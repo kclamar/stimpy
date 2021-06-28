@@ -25,7 +25,7 @@ StimPy documentation
     ^^^^^^^^^^
 
     The user guide provides in-depth information on the
-    key concepts of pandas with useful background information and explanation.
+    key concepts of StimPy with useful background information and explanation.
 
     +++
 
@@ -41,7 +41,7 @@ StimPy documentation
     ^^^^^^^^^^^^^
 
     The reference guide contains a detailed description of
-    the pandas API. The reference describes how the methods work and which parameters can
+    the StimPy API. The reference describes how the methods work and which parameters can
     be used. It assumes that you have an understanding of the key concepts.
 
     +++
