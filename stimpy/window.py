@@ -17,6 +17,7 @@ class Window(visual.Window):
         width: float = None,
         fullscr=True,
         size: Tuple[int, int] = None,
+        color=(-1, -1, -1),
         **kwargs,
     ):
         """Wrapper of :class:`visual.Window`.
@@ -65,5 +66,6 @@ class Window(visual.Window):
             size=size,
             fullscr=fullscr,
             monitor=monitor,
+            color=color,
             **kwargs,
         )

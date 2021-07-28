@@ -67,6 +67,8 @@ class Trial:
             if "escape" in event.getKeys():
                 core.quit()
 
+        self.__win.flip(clearBuffer=True)
+
     def save_movie(self, file_name: str, fps=60) -> None:
         """Save trial as movie.
 
