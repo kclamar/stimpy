@@ -1,5 +1,5 @@
 from functools import cached_property
-from typing import List
+from typing import List, Union
 
 import numpy as np
 
@@ -15,15 +15,28 @@ class Animate(Func):
     """
 
     def __init__(
-        self, values: list, dur: List[float], calc_mode: str = "linear"
+        self,
+        values: list,
+        dur: Union[float, List[float]],
+        calc_mode: str = "linear",
+        mode="nearest",
     ):
         assert len(values) == len(dur)
         self.__values = values
-        self.__dur = dur
+        if isinstance(dur, float):
+            self.__dur = [dur] * len(values)
+        else:
+            self.__dur = dur
         self.__calc_mode = calc_mode.lower()
+        self.__mode = mode
 
     def __call__(self, t: float):
-        t_cycle = t % self._dur_sum
+        if self.__mode == "wrap":
+            t_cycle = t % self._dur_sum
+        elif self.__mode == "nearest":
+            t_cycle = np.clip(t, 0, self._dur_sum)
+        else:
+            raise NotImplementedError
         i = min(
             len(self.__dur) - 1, int(np.digitize(t_cycle, self._dur_cumsum))
         )

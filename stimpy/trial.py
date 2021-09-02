@@ -1,6 +1,7 @@
 import numpy as np
 from psychopy import core, event, visual
 
+from .scene import Scene
 from .stim import StimulusData
 
 
@@ -22,17 +23,29 @@ class Drawable:
             if callable(val)
         }
         self.stimulus = self.__stimulus_data.stimulus_type(win=win, **kwargs)
+        self.__drawn = False
+
+    def reset(self):
+        self.__drawn = False
 
     @property
     def end(self):
         return self.__end
 
     def draw(self, t: float):
+        ret = None
+
         if self.__begin <= t < self.__end:
+            if not self.__drawn:
+                self.__drawn = True
+                ret = t
+
             for attr, func in self.__attr_funcs.items():
                 setattr(self.stimulus, attr, func(t - self.__begin))
 
             self.stimulus.draw()
+
+        return ret
 
 
 class Trial:
@@ -44,25 +57,35 @@ class Trial:
         if not provided.
     """
 
-    def __init__(self, scene, win: visual.Window, dur: float = None):
+    def __init__(
+        self,
+        scene: Scene,
+        win: visual.Window,
+        dur: float = None,
+        clear_buffer=True,
+    ):
         self.__win = win
         self.__win.setColor(scene.color)
         self.__win.setUnits(scene.units)
-        self.__drawables = [Drawable(win, *args) for args in scene]
+        self.__drawables = [Drawable(win, *args) for args in scene][::-1]
         self.__dur: float = (
             max(map(lambda x: x.end, self.__drawables)) if dur is None else dur
         )
+        self.__clear_buffer = clear_buffer
         self.__timer = core.Clock()
 
     def start(self) -> None:
         """Start trial."""
+        for drawable in self.__drawables:
+            drawable.reset()
+
         self.__timer.reset()
 
         while (t := self.__timer.getTime()) < self.__dur:
             for drawable in self.__drawables:
                 drawable.draw(t)
 
-            self.__win.flip()
+            self.__win.flip(clearBuffer=self.__clear_buffer)
 
             if "escape" in event.getKeys():
                 core.quit()

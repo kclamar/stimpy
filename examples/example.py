@@ -63,6 +63,6 @@ scene.add(flashing, begin=8, dur=dur)
 scene.add(dimming, begin=10, dur=dur)
 scene.add(grating, begin=12, dur=dur)
 
-win = Window(distance=7, width=26)
-trial = Trial(scene, win=win)
+win = Window(distance=1, width=26)
+trial = Trial(scene, win=win, dur=40)
 trial.start()

@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import Iterable, List, Tuple, Union
 
 from stimpy.stim import StimulusData
 
@@ -28,7 +28,18 @@ class Scene:
     def units(self):
         return self.__units
 
-    def add(self, stimulus_data: StimulusData, begin: float, dur: float):
-        self.__stimulus_data.append(stimulus_data)
-        self.__begin.append(begin)
-        self.__dur.append(dur)
+    def add(
+        self,
+        stimulus_data: Union[StimulusData, Iterable[StimulusData]],
+        begin: float,
+        dur: float,
+    ):
+        if isinstance(stimulus_data, StimulusData):
+            stimulus_data_list = [stimulus_data]
+        else:
+            stimulus_data_list = stimulus_data
+
+        for i in stimulus_data_list:
+            self.__stimulus_data.append(i)
+            self.__begin.append(begin)
+            self.__dur.append(dur)

@@ -9,6 +9,7 @@ exclude = '''
     | \.mypy_cache
     | \.tox
     | \.venv
+    | \venv
     | _build
     | buck-out
     | build
@@ -19,7 +20,7 @@ exclude = '''
 
 [tool.poetry]
 name = "stimpy"
-version = "0.2.0"
+version = "0.3.0"
 description = "A PsychoPy wrapper to create moving visual stimuli without loops."
 authors = ["Ka Chung Lam <kclamar@connect.ust.hk>"]
 license = "MIT"
@@ -39,6 +40,7 @@ classifiers=[
 python = "^3.8"
 numpy = "^1.21.0"
 PsychoPy = "^2021.2.0"
+LabJackPython = "^2.0.4"
 
 black = { version = "*", optional = true }
 isort = { version = "*", optional = true }
