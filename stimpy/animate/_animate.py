@@ -21,12 +21,12 @@ class Animate(Func):
         calc_mode: str = "linear",
         mode="nearest",
     ):
-        assert len(values) == len(dur)
         self.__values = values
-        if isinstance(dur, float):
-            self.__dur = [dur] * len(values)
+        if isinstance(dur, (float, int)):
+            self.__dur = [dur, 0]
         else:
             self.__dur = dur
+        assert len(self.__values) == len(self.__dur)
         self.__calc_mode = calc_mode.lower()
         self.__mode = mode
 

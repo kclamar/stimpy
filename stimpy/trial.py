@@ -74,6 +74,10 @@ class Trial:
         self.__clear_buffer = clear_buffer
         self.__timer = core.Clock()
 
+    @property
+    def t(self):
+        return self.__timer.getTime()
+
     def start(self) -> None:
         """Start trial."""
         for drawable in self.__drawables:
