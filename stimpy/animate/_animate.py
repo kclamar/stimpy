@@ -1,5 +1,5 @@
 from functools import cached_property
-from typing import List, Union
+from typing import Callable, List, Union
 
 import numpy as np
 
@@ -19,7 +19,8 @@ class Animate(Func):
         values: list,
         dur: Union[float, List[float]],
         calc_mode: str = "linear",
-        mode="nearest",
+        mode: str = "nearest",
+        func: Callable = None,
     ):
         self.__values = values
         if isinstance(dur, (float, int)):
@@ -29,6 +30,7 @@ class Animate(Func):
         assert len(self.__values) == len(self.__dur)
         self.__calc_mode = calc_mode.lower()
         self.__mode = mode
+        self.__func = (lambda x: x) if func is None else func
 
     def __call__(self, t: float):
         if self.__mode == "wrap":
@@ -42,7 +44,7 @@ class Animate(Func):
         )
         t_state = t_cycle - sum(self.__dur[:i])
         f = 0 if self.__dur[i] == 0 else t_state / self.__dur[i]
-        return self._interpolate(i, f)
+        return self.__func(self._interpolate(i, f))
 
     @cached_property
     def _dur_cumsum(self) -> np.ndarray:
